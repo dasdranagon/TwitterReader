@@ -8,15 +8,11 @@
 
 #import "TRWebClient.h"
 
-#import <Accounts/Accounts.h>
-#import <Social/Social.h>
+static NSString * const apiKey = @"NvimLbpC4AHQjBnEtcXlRw";
+static NSString * const apiSecret = @"6a8J5mP2NMU7PCNcC7ta0ltFZyXJxsxKAdcEdc72Cg";
 
-NSString * const kWebClientSelectUserNorification = @"kWebClientSelectUserNorification";
-
-@interface TRWebClient() <UIActionSheetDelegate>{
-    ACAccountStore *_accountStore;
-    
-    BOOL _selectUserSheetOnScreen;
+@interface TRWebClient(){
+    NSString *_accessTocken;
 }
 
 @end
@@ -38,15 +34,40 @@ NSString * const kWebClientSelectUserNorification = @"kWebClientSelectUserNorifi
 {
     self = [super init];
     if (self) {
-        _accountStore = [[ACAccountStore alloc] init];
+        [self auth];
     }
     
     return self;
 }
 
+- (void) auth
+{
+    NSString *bearerToken = [[NSString stringWithFormat:@"%@:%@", apiKey, apiSecret] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString *bearerTokenBase64 = [[bearerToken dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.twitter.com/oauth2/token"]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:[@"Basic " stringByAppendingString:bearerTokenBase64] forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:[@"grant_type=client_credentials" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    __weak TRWebClient *weakSelf = self;
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request
+                                     completionHandler:^(NSData *responseData, NSURLResponse *response, NSError *error) {
+        __strong TRWebClient *strongSelf = weakSelf;
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
+        if ([data isKindOfClass:[NSDictionary class]]) {
+            strongSelf->_accessTocken = data[@"access_token"];
+            strongSelf.authenticated = strongSelf->_accessTocken != nil;
+        }
+    }] resume];
+}
+
 - (void)timelineWithMaxId:(NSString *)maxId handler:(void (^)(NSArray *))handler
 {
-    if (!_currentAccount) {
+    if (!_authenticated) {
+        handler (nil);
         return;
     }
     
@@ -55,117 +76,37 @@ NSString * const kWebClientSelectUserNorification = @"kWebClientSelectUserNorifi
     if (maxId) {
         [urlString appendFormat:@"&max_id=%lld", [maxId longLongValue]-1];
     }
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     
-    NSURL *url = [NSURL URLWithString:urlString];
-
-    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
-                                            requestMethod:SLRequestMethodGET
-                                                      URL:url
-                                               parameters:nil];
-    [request setAccount:_currentAccount];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:[@"Bearer " stringByAppendingString:_accessTocken] forHTTPHeaderField:@"Authorization"];
     
-    [request performRequestWithHandler:^(NSData *responseData,
-                                         NSHTTPURLResponse *urlResponse,
-                                         NSError *error) {
-        if (responseData) {
-            if (urlResponse.statusCode >= 200 && urlResponse.statusCode < 300) {
-                NSError *error;
-                id data = [NSJSONSerialization JSONObjectWithData:responseData
-                                                                             options:NSJSONReadingAllowFragments
-                                                                            error:&error];
-                handler (data);
-                if (!data) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self showAlert:[error localizedDescription]];
-                    });
-                }
-            }
-            else {
-                handler (nil);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self showAlert:[NSString stringWithFormat:@"The response status code is %d", urlResponse.statusCode]];
-                });
-            }
-        }
-    }];
-
-}
-
-- (BOOL)hasAccess
-{
-    return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
-}
-
-- (void)chooseAccountIfNeed
-{
-    if ( [self hasAccess] ) {
-        if (_currentAccount == nil) {
-            [self changeAccount];
-        }
-    }
-    else {
-        self.currentAccount = nil;
-        [self showAlert:@"you are not logged in\nplease choose twitter in settings and log in in your twitter account"];
-    }
-}
-
-- (void)changeAccount
-{
-    ACAccountType *twitterAccountType = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    [_accountStore requestAccessToAccountsWithType:twitterAccountType
-                                           options:nil
-                                        completion:^(BOOL granted, NSError *error) {
-                                            if (granted) {
-                                                NSArray *twitterAccounts = [_accountStore accountsWithAccountType:twitterAccountType];
-                                                if ((twitterAccounts.count > 1) && !_selectUserSheetOnScreen) {
-                                                    _selectUserSheetOnScreen = YES;
-                                                    
-                                                    UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
-                                                    actionSheet.delegate = self;
-                                                    [actionSheet setTitle:@"Choose your username"];
-                                                    
-                                                    [twitterAccounts enumerateObjectsUsingBlock:^(ACAccount *acc, NSUInteger idx, BOOL *stop) {
-                                                        [actionSheet addButtonWithTitle:acc.username];
-                                                    }];
-                                                    
-                                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                                        [actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
-                                                    });
-                                                    
-                                                } else {
-                                                    self.currentAccount = [twitterAccounts lastObject];
-                                                }
-                                            }
-                                            else {
-                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                    [self showAlert:[error localizedDescription]];
-                                                });
-                                            }
-                                        }];
-}
-
-- (void)showAlert:(NSString *)message
-{
-    [[[UIAlertView alloc] initWithTitle:nil
-                                message:message
-                               delegate:nil
-                      cancelButtonTitle:@"Ok"
-                      otherButtonTitles:nil] show];
-}
-
-- (void)setCurrentAccount:(ACAccount *)currentAccount
-{
-    _currentAccount = currentAccount;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kWebClientSelectUserNorification object:self userInfo:nil];
-}
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    _selectUserSheetOnScreen = NO;
-    NSArray *twitterAccounts = [_accountStore accountsWithAccountType:[_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter]];
-    self.currentAccount = [twitterAccounts objectAtIndex:buttonIndex];
+    __weak TRWebClient *weakSelf = self;
+    
+    NSLog(@"%@  : %@", request, request.allHTTPHeaderFields);
+    
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request
+                                     completionHandler:^(NSData *responseData, NSURLResponse *response, NSError *error) {
+                                         __strong TRWebClient *strongSelf = weakSelf;
+                                         strongSelf.lastError = error;
+                                         id data = nil;
+                                         if (responseData) {
+                                             NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+                                             if (statusCode >= 200 && statusCode < 300) {
+                                                 NSError *jsonError;
+                                                 data = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                                        options:NSJSONReadingAllowFragments
+                                                                                          error:&jsonError];
+                                                 NSLog(@"%@", data);
+                                                 strongSelf.lastError = jsonError;
+                                             }
+                                         }
+                                         NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:responseData
+                                                                                      options:NSJSONReadingAllowFragments
+                                                                                        error:nil]);
+                                         handler (data);
+    }] resume];
 }
 
 @end

@@ -31,7 +31,7 @@
                                                    object:nil];
         
         [_webClient addObserver:self
-                     forKeyPath:NSStringFromSelector(@selector(currentAccount))
+                     forKeyPath:NSStringFromSelector(@selector(authenticated))
                         options:NSKeyValueObservingOptionNew
                         context:nil];
     }
@@ -41,7 +41,7 @@
 
 - (void)dealloc
 {
-    [_webClient removeObserver:self forKeyPath:NSStringFromSelector(@selector(currentAccount))];
+    [_webClient removeObserver:self forKeyPath:NSStringFromSelector(@selector(authenticated))];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -50,33 +50,32 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-    if ([keyPath isEqualToString:NSStringFromSelector(@selector(currentAccount))]) {
+    if ([keyPath isEqualToString:NSStringFromSelector(@selector(authenticated))]) {
         [self update];
     }
 }
 
 - (void)activate
 {
-    
+    if (_webClient.authenticated) {
+        [self update];
+    }
 }
 
 - (void)more
 {
     if (!_processing) {
         self.processing = YES;
-        if (_webClient.currentAccount) {
-            __weak TRTwitterTimelineViewModel *weakSelf = self;
-            [_webClient timelineWithMaxId:[[self.twitts lastObject] id] handler:^(NSArray *list) {
-                __strong TRTwitterTimelineViewModel *strongSelf = weakSelf;
-                
-                NSArray *newTwitts = [strongSelf twitsFromArray:list];
-                if ([newTwitts count]) {
-                    strongSelf.twitts = [strongSelf.twitts arrayByAddingObjectsFromArray:newTwitts];
-                }
-                strongSelf.processing = NO;
-            }];
-        }
-
+        __weak TRTwitterTimelineViewModel *weakSelf = self;
+        [_webClient timelineWithMaxId:[[self.twitts lastObject] id] handler:^(NSArray *list) {
+            __strong TRTwitterTimelineViewModel *strongSelf = weakSelf;
+            
+            NSArray *newTwitts = [strongSelf twitsFromArray:list];
+            if ([newTwitts count]) {
+                strongSelf.twitts = [strongSelf.twitts arrayByAddingObjectsFromArray:newTwitts];
+            }
+            strongSelf.processing = NO;
+        }];
     }
 }
 
@@ -84,20 +83,18 @@
 {
     if (!_processing) {
         self.processing = YES;
-        if (_webClient.currentAccount) {
-            __weak TRTwitterTimelineViewModel *weakSelf = self;
-            [_webClient timelineWithMaxId:nil handler:^(NSArray *list) {
-                 __strong TRTwitterTimelineViewModel *strongSelf = weakSelf;
-                
-                NSArray *newTwitts = [strongSelf twitsFromArray:list];
-                
-                if ([newTwitts count]) {
-                    strongSelf.twitts = newTwitts;
-                }
-                
-                strongSelf.processing = NO;
-            }];
-        }
+        __weak TRTwitterTimelineViewModel *weakSelf = self;
+        [_webClient timelineWithMaxId:nil handler:^(NSArray *list) {
+            __strong TRTwitterTimelineViewModel *strongSelf = weakSelf;
+            
+            NSArray *newTwitts = [strongSelf twitsFromArray:list];
+            
+            if ([newTwitts count]) {
+                strongSelf.twitts = newTwitts;
+            }
+            
+            strongSelf.processing = NO;
+        }];
     }
 }
 

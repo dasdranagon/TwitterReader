@@ -8,16 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const kWebClientSelectUserNorification;
-
-@class ACAccount;
-
 @interface TRWebClient : NSObject
-@property (nonatomic, strong) ACAccount *currentAccount;
+@property (nonatomic) BOOL authenticated;
+@property (nonatomic) NSError *lastError;
 
 + (TRWebClient *)sharedInstance;
-- (void)chooseAccountIfNeed;
-
+- (void)auth;
 - (void)timelineWithMaxId:(NSString *)maxId handler:(void (^)(NSArray *))handler;
 
 @end

@@ -62,6 +62,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_viewModel activate];
     [_representationSwitcher addTarget:self action:@selector(changePresenter:) forControlEvents: UIControlEventValueChanged];
     [self addRepresentationsToContainer];
 }
