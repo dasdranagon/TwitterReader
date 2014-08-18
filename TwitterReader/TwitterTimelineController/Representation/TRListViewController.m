@@ -16,7 +16,6 @@ static NSString * const kTwittCellReuseIdentifier = @"kTwittCellReuseIdentifier"
     __weak IBOutlet UITableView *_tableView;
     __weak IBOutlet UIActivityIndicatorView *_loadMoreProcessing;
     UIRefreshControl *_refreshControl;
-    NSMutableIndexSet *_visibleItems;
 }
 
 @end
@@ -26,7 +25,6 @@ static NSString * const kTwittCellReuseIdentifier = @"kTwittCellReuseIdentifier"
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _visibleItems = [[NSMutableIndexSet alloc] init];
     [_tableView registerNib:[UINib nibWithNibName:@"TRListCell" bundle:nil] forCellReuseIdentifier:kTwittCellReuseIdentifier];
     
     _refreshControl = [[UIRefreshControl alloc] init];
@@ -50,10 +48,14 @@ static NSString * const kTwittCellReuseIdentifier = @"kTwittCellReuseIdentifier"
 
 - (void)updateItemAtIndex:(NSInteger)idx
 {
-    if ([_visibleItems containsIndex:idx]) {
-        [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
+    NSArray *visible = [_tableView indexPathsForVisibleRows];
+    [visible enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger i, BOOL *stop) {
+        if (idx == i) {
+            [_tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+            *stop = YES;
+        }
+    }];
 }
 
 - (void)updateProgressing:(BOOL)progress
@@ -94,15 +96,9 @@ static NSString * const kTwittCellReuseIdentifier = @"kTwittCellReuseIdentifier"
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_visibleItems addIndex:indexPath.row];
     if (indexPath.row == [_delegate twittsCount]-1) {
         [_delegate representation:self signal:TRTimelineRepresentationSignalLoadMore];
     }
-}
-
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [_visibleItems removeIndex:indexPath.row];
 }
 
 @end

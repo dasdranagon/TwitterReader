@@ -18,7 +18,6 @@ static NSString * const kTwittGridFooterReuseIdentifier = @"kTwittGridFooterReus
     __weak IBOutlet UICollectionView *_collectionView;
     UIRefreshControl *_refreshControl;
     UIActivityIndicatorView *_loadMoreProcessing;
-    NSMutableIndexSet *_visibleItems;
 }
 
 @end
@@ -29,7 +28,7 @@ static NSString * const kTwittGridFooterReuseIdentifier = @"kTwittGridFooterReus
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _visibleItems = [[NSMutableIndexSet alloc] init];
+
     [_collectionView registerNib:[UINib nibWithNibName:@"TRGridCell" bundle:nil] forCellWithReuseIdentifier:kTwittGridCellReuseIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"TRGridLoadMoreFooter" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kTwittGridFooterReuseIdentifier];
     
@@ -50,10 +49,13 @@ static NSString * const kTwittGridFooterReuseIdentifier = @"kTwittGridFooterReus
 
 - (void)updateItemAtIndex:(NSInteger)idx
 {
-    if ([_visibleItems containsIndex:idx]) {
-        [_collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]]
-];
-    }
+    NSArray *visible = [_collectionView indexPathsForVisibleItems];
+    [visible enumerateObjectsUsingBlock:^(NSIndexPath *indexPath, NSUInteger i, BOOL *stop) {
+        if (idx == i) {
+            [_collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]]];
+            *stop = YES;
+        }
+    }];
 }
 
 - (void)updateProgressing:(BOOL)progress
@@ -81,7 +83,8 @@ static NSString * const kTwittGridFooterReuseIdentifier = @"kTwittGridFooterReus
 {
     TRGridCell *cell = (TRGridCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:kTwittGridCellReuseIdentifier forIndexPath:indexPath];
     [cell setTwittInfo:[_delegate twittAtIndex:indexPath.row]];
-    [_visibleItems addIndex:indexPath.row];
+
+    cell.tag = indexPath.row;
     return cell;
 }
 
@@ -95,12 +98,6 @@ static NSString * const kTwittGridFooterReuseIdentifier = @"kTwittGridFooterReus
     return footer;
 }
 
-#pragma mark - UICollectionViewDelegate
-
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    [_visibleItems removeIndex:indexPath.row];
-}
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 

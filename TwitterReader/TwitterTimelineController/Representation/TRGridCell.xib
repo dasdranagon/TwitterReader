@@ -48,7 +48,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="74H-iw-Qfg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jn3-l2-Okc" secondAttribute="leading" constant="6" id="1j2-3V-yMM"/>
                 <constraint firstAttribute="trailing" secondItem="Twh-xJ-qkz" secondAttribute="trailing" constant="6" id="32D-4J-fS2"/>

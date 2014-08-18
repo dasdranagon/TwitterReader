@@ -75,6 +75,9 @@
 
 - (void)changePresenter:(UISegmentedControl *)segmented
 {
+    id<TRTimelineRepresentation> representer =  _representations[segmented.selectedSegmentIndex];
+    [representer updateList];
+    
     CGRect frm = _containerView.frame;
     frm.origin.x = frm.size.width*segmented.selectedSegmentIndex;
     [_containerView scrollRectToVisible:frm animated:YES];
@@ -104,7 +107,6 @@
 
 #pragma mark - KVO
 
-
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -119,20 +121,18 @@
 
 - (void)updateRepresentations
 {
-    [_representations enumerateObjectsUsingBlock:^(id<TRTimelineRepresentation> representation, NSUInteger idx, BOOL *stop) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [representation updateList];
-        });
-    }];
-
+    id<TRTimelineRepresentation> representer =  _representations[_representationSwitcher.selectedSegmentIndex];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [representer updateList];
+    });
+    
 }
 - (void)changeRepresentationsProgressing
 {
-    [_representations enumerateObjectsUsingBlock:^(id<TRTimelineRepresentation> representation, NSUInteger idx, BOOL *stop) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [representation updateProgressing:_viewModel.processing];
-        });
-    }];
+    id<TRTimelineRepresentation> representer =  _representations[_representationSwitcher.selectedSegmentIndex];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [representer updateProgressing:_viewModel.processing];
+    });
 }
 
 #pragma mark - TRTimelineRepresentationDelegate
@@ -143,6 +143,10 @@
 }
 - (TRTwitt *)twittAtIndex:(NSInteger)idx
 {
+    if (idx >= _viewModel.twitts.count){
+        return nil;
+    }
+    
     return _viewModel.twitts[idx];
 }
 
@@ -166,11 +170,10 @@
 
 - (void)timelineViewModel:(TRTwitterTimelineViewModel *)viewModel updatedItemAtIndex:(NSInteger)index
 {
-    [_representations enumerateObjectsUsingBlock:^(id<TRTimelineRepresentation> representation, NSUInteger idx, BOOL *stop) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [representation updateItemAtIndex:index];
-        });
-    }];
+    id<TRTimelineRepresentation> representer =  _representations[_representationSwitcher.selectedSegmentIndex];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [representer updateItemAtIndex:index];
+    });
 }
 
 @end
