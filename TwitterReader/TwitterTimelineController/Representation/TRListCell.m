@@ -59,7 +59,7 @@ static CGFloat const kAdditionImageHeight = 8;
 
 + (CGSize)contentSizeForTwittInfo:(TRTwitt *)twitt
 {
-    CGFloat height = [twitt.text sizeWithFont:[self font] constrainedToSize:CGSizeMake(kMaxContentWidth, 1000)].height;
+    CGFloat height = [twitt.text sizeWithFont:[self font] constrainedToSize:CGSizeMake(kMaxContentWidth, INT32_MAX)].height;
     
     if (twitt.image) {
         height += twitt.image.size.height * kMaxContentWidth/twitt.image.size.width;

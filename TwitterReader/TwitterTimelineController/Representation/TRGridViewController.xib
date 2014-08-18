@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TRGridViewController">
             <connections>
+                <outlet property="_collectionView" destination="sjC-cb-bXG" id="D59-L5-LHA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +15,31 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="0.14696055669999999" blue="0.091199546539999995" alpha="1" colorSpace="calibratedRGB"/>
+            <subviews>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sjC-cb-bXG">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="Yfi-kZ-9g1">
+                        <size key="itemSize" width="150" height="120"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="50" height="50"/>
+                        <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="usm-2k-wlf"/>
+                        <outlet property="delegate" destination="-1" id="SkP-x0-BLC"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="sjC-cb-bXG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="25v-Ms-nYD"/>
+                <constraint firstAttribute="bottom" secondItem="sjC-cb-bXG" secondAttribute="bottom" id="Z5o-OQ-td6"/>
+                <constraint firstAttribute="trailing" secondItem="sjC-cb-bXG" secondAttribute="trailing" id="d22-fH-r0t"/>
+                <constraint firstItem="sjC-cb-bXG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hZu-Xo-3zP"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

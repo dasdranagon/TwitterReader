@@ -127,7 +127,7 @@
     return [twitts copy];
 }
 
-#pragma mark -- recive memory warning
+#pragma mark - recive memory warning
 
 - (void)didReceiveMemoryWarning:(NSNotification *)notify
 {

@@ -102,7 +102,7 @@
     }];
 }
 
-#pragma mark -- KVO
+#pragma mark - KVO
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B05357D19A218D0007CA6D2 /* TRGridLoadMoreFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B05357C19A218D0007CA6D2 /* TRGridLoadMoreFooter.m */; };
+		6B05357F19A218E6007CA6D2 /* TRGridLoadMoreFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B05357E19A218E6007CA6D2 /* TRGridLoadMoreFooter.xib */; };
 		6BE2B152199F6D5C000C0680 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE2B151199F6D5C000C0680 /* Foundation.framework */; };
 		6BE2B154199F6D5C000C0680 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE2B153199F6D5C000C0680 /* CoreGraphics.framework */; };
 		6BE2B156199F6D5C000C0680 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE2B155199F6D5C000C0680 /* UIKit.framework */; };
@@ -48,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B05357B19A218D0007CA6D2 /* TRGridLoadMoreFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRGridLoadMoreFooter.h; sourceTree = "<group>"; };
+		6B05357C19A218D0007CA6D2 /* TRGridLoadMoreFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRGridLoadMoreFooter.m; sourceTree = "<group>"; };
+		6B05357E19A218E6007CA6D2 /* TRGridLoadMoreFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TRGridLoadMoreFooter.xib; sourceTree = "<group>"; };
 		6BE2B14E199F6D5C000C0680 /* TwitterReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE2B151199F6D5C000C0680 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BE2B153199F6D5C000C0680 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -234,6 +239,9 @@
 				6BE2B1AD19A0F2F1000C0680 /* TRGridCell.h */,
 				6BE2B1AE19A0F2F1000C0680 /* TRGridCell.m */,
 				6BE2B1B219A0F329000C0680 /* TRGridCell.xib */,
+				6B05357B19A218D0007CA6D2 /* TRGridLoadMoreFooter.h */,
+				6B05357C19A218D0007CA6D2 /* TRGridLoadMoreFooter.m */,
+				6B05357E19A218E6007CA6D2 /* TRGridLoadMoreFooter.xib */,
 			);
 			path = Representation;
 			sourceTree = "<group>";
@@ -321,6 +329,7 @@
 				6BE2B1B319A0F329000C0680 /* TRGridCell.xib in Resources */,
 				6BE2B1A219A0F24B000C0680 /* TRGridViewController.xib in Resources */,
 				6BE2B1AC19A0F2B0000C0680 /* TRListCell.xib in Resources */,
+				6B05357F19A218E6007CA6D2 /* TRGridLoadMoreFooter.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +351,7 @@
 				6BE2B19019A0A2DC000C0680 /* TRWebClient.m in Sources */,
 				6BE2B1AB19A0F2B0000C0680 /* TRListCell.m in Sources */,
 				6BE2B162199F6D5C000C0680 /* TRAppDelegate.m in Sources */,
+				6B05357D19A218D0007CA6D2 /* TRGridLoadMoreFooter.m in Sources */,
 				6BE2B19C19A0F238000C0680 /* TRListViewController.m in Sources */,
 				6BE2B1AF19A0F2F1000C0680 /* TRGridCell.m in Sources */,
 				6BE2B187199F725A000C0680 /* TRTwitterTimelineViewController.m in Sources */,
@@ -548,6 +558,7 @@
 				6BE2B17C199F6D5C000C0680 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6BE2B17D199F6D5C000C0680 /* Build configuration list for PBXNativeTarget "TwitterReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +567,7 @@
 				6BE2B17F199F6D5C000C0680 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

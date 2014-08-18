@@ -40,8 +40,7 @@ static NSString * const kTwittCellReuseIdentifier = @"kTwittCellReuseIdentifier"
 
 - (void)pullToRefresh
 {
-    
-    [_delegate representation:self signal:TRTimelineRepresentationSignalLoadMore];
+    [_delegate representation:self signal:TRTimelineRepresentationSignalUpdate];
 }
 
 - (void)updateList
@@ -71,7 +70,7 @@ static NSString * const kTwittCellReuseIdentifier = @"kTwittCellReuseIdentifier"
     }
 }
 
-#pragma mark -- UITableViewDataSource
+#pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -85,7 +84,7 @@ static NSString * const kTwittCellReuseIdentifier = @"kTwittCellReuseIdentifier"
     return [_delegate twittsCount];
 }
 
-#pragma mark -- UITableViewDelegate
+#pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -97,7 +96,7 @@ static NSString * const kTwittCellReuseIdentifier = @"kTwittCellReuseIdentifier"
 {
     [_visibleItems addIndex:indexPath.row];
     if (indexPath.row == [_delegate twittsCount]-1) {
-        [_delegate representation:self signal:TRTimelineRepresentationSignalUpdate];
+        [_delegate representation:self signal:TRTimelineRepresentationSignalLoadMore];
     }
 }
 

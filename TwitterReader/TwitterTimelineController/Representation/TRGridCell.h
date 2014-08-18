@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class TRTwitt;
+
 @interface TRGridCell : UICollectionViewCell
+
+- (void)setTwittInfo:(TRTwitt *)twitt;
++ (CGSize)contentSizeForTwittInfo:(TRTwitt *)twitt;
 
 @end
