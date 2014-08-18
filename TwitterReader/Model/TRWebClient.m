@@ -64,29 +64,31 @@ NSString * const kWebClientSelectUserNorification = @"kWebClientSelectUserNorifi
                                                parameters:nil];
     [request setAccount:_currentAccount];
     
+    __weak TRWebClient *weakSelf = self;
     [request performRequestWithHandler:^(NSData *responseData,
                                          NSHTTPURLResponse *urlResponse,
                                          NSError *error) {
+        __strong TRWebClient *strongSelf = weakSelf;
+        id data = nil;
         if (responseData) {
             if (urlResponse.statusCode >= 200 && urlResponse.statusCode < 300) {
                 NSError *error;
-                id data = [NSJSONSerialization JSONObjectWithData:responseData
+                data = [NSJSONSerialization JSONObjectWithData:responseData
                                                                              options:NSJSONReadingAllowFragments
-                                                                            error:&error];
-                handler (data);
+                                                            error:&error];
                 if (!data) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self showAlert:[error localizedDescription]];
+                        [strongSelf showAlert:[error localizedDescription]];
                     });
                 }
             }
             else {
-                handler (nil);
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self showAlert:[NSString stringWithFormat:@"The response status code is %d", urlResponse.statusCode]];
+                    [strongSelf showAlert:[NSString stringWithFormat:@"The response status code is %d", urlResponse.statusCode]];
                 });
             }
         }
+        handler (data);
     }];
 
 }
@@ -112,16 +114,18 @@ NSString * const kWebClientSelectUserNorification = @"kWebClientSelectUserNorifi
 - (void)changeAccount
 {
     ACAccountType *twitterAccountType = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    __weak TRWebClient *weakSelf = self;
     [_accountStore requestAccessToAccountsWithType:twitterAccountType
                                            options:nil
                                         completion:^(BOOL granted, NSError *error) {
+                                            __strong TRWebClient *strongSelf = weakSelf;
                                             if (granted) {
                                                 NSArray *twitterAccounts = [_accountStore accountsWithAccountType:twitterAccountType];
                                                 if ((twitterAccounts.count > 1) && !_selectUserSheetOnScreen) {
                                                     _selectUserSheetOnScreen = YES;
                                                     
                                                     UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
-                                                    actionSheet.delegate = self;
+                                                    actionSheet.delegate = strongSelf;
                                                     [actionSheet setTitle:@"Choose your username"];
                                                     
                                                     [twitterAccounts enumerateObjectsUsingBlock:^(ACAccount *acc, NSUInteger idx, BOOL *stop) {
@@ -133,12 +137,12 @@ NSString * const kWebClientSelectUserNorification = @"kWebClientSelectUserNorifi
                                                     });
                                                     
                                                 } else {
-                                                    self.currentAccount = [twitterAccounts lastObject];
+                                                    strongSelf.currentAccount = [twitterAccounts lastObject];
                                                 }
                                             }
                                             else {
                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                    [self showAlert:[error localizedDescription]];
+                                                    [strongSelf showAlert:[error localizedDescription]];
                                                 });
                                             }
                                         }];

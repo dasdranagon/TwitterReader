@@ -64,6 +64,7 @@
     [super viewDidLoad];
     [_representationSwitcher addTarget:self action:@selector(changePresenter:) forControlEvents: UIControlEventValueChanged];
     [self addRepresentationsToContainer];
+    [_viewModel activate];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -33,6 +33,9 @@ static NSString * const kTwittCellReuseIdentifier = @"kTwittCellReuseIdentifier"
     [_tableView addSubview:_refreshControl];
     [_refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     
+    
+    [_loadMoreProcessing setHidden:YES];
+    
 }
 
 - (void)pullToRefresh

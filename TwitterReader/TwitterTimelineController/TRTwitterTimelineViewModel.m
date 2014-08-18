@@ -57,14 +57,17 @@
 
 - (void)activate
 {
+    if (_webClient.currentAccount) {
+        [self update];
+    }
     
 }
 
 - (void)more
 {
     if (!_processing) {
-        self.processing = YES;
         if (_webClient.currentAccount) {
+            self.processing = YES;
             __weak TRTwitterTimelineViewModel *weakSelf = self;
             [_webClient timelineWithMaxId:[[self.twitts lastObject] id] handler:^(NSArray *list) {
                 __strong TRTwitterTimelineViewModel *strongSelf = weakSelf;
@@ -83,8 +86,9 @@
 - (void)update
 {
     if (!_processing) {
-        self.processing = YES;
         if (_webClient.currentAccount) {
+            self.processing = YES;
+            
             __weak TRTwitterTimelineViewModel *weakSelf = self;
             [_webClient timelineWithMaxId:nil handler:^(NSArray *list) {
                  __strong TRTwitterTimelineViewModel *strongSelf = weakSelf;
