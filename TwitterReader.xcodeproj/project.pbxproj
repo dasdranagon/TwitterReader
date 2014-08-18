@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6B05357D19A218D0007CA6D2 /* TRGridLoadMoreFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B05357C19A218D0007CA6D2 /* TRGridLoadMoreFooter.m */; };
 		6B05357F19A218E6007CA6D2 /* TRGridLoadMoreFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B05357E19A218E6007CA6D2 /* TRGridLoadMoreFooter.xib */; };
+		6B05358519A232D3007CA6D2 /* TRGridVerticalFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B05358419A232D3007CA6D2 /* TRGridVerticalFlowLayout.m */; };
 		6BE2B152199F6D5C000C0680 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE2B151199F6D5C000C0680 /* Foundation.framework */; };
 		6BE2B154199F6D5C000C0680 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE2B153199F6D5C000C0680 /* CoreGraphics.framework */; };
 		6BE2B156199F6D5C000C0680 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE2B155199F6D5C000C0680 /* UIKit.framework */; };
@@ -53,6 +54,8 @@
 		6B05357B19A218D0007CA6D2 /* TRGridLoadMoreFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRGridLoadMoreFooter.h; sourceTree = "<group>"; };
 		6B05357C19A218D0007CA6D2 /* TRGridLoadMoreFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRGridLoadMoreFooter.m; sourceTree = "<group>"; };
 		6B05357E19A218E6007CA6D2 /* TRGridLoadMoreFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TRGridLoadMoreFooter.xib; sourceTree = "<group>"; };
+		6B05358319A232D3007CA6D2 /* TRGridVerticalFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRGridVerticalFlowLayout.h; sourceTree = "<group>"; };
+		6B05358419A232D3007CA6D2 /* TRGridVerticalFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRGridVerticalFlowLayout.m; sourceTree = "<group>"; };
 		6BE2B14E199F6D5C000C0680 /* TwitterReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE2B151199F6D5C000C0680 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BE2B153199F6D5C000C0680 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -242,6 +245,8 @@
 				6B05357B19A218D0007CA6D2 /* TRGridLoadMoreFooter.h */,
 				6B05357C19A218D0007CA6D2 /* TRGridLoadMoreFooter.m */,
 				6B05357E19A218E6007CA6D2 /* TRGridLoadMoreFooter.xib */,
+				6B05358319A232D3007CA6D2 /* TRGridVerticalFlowLayout.h */,
+				6B05358419A232D3007CA6D2 /* TRGridVerticalFlowLayout.m */,
 			);
 			path = Representation;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 				6BE2B19C19A0F238000C0680 /* TRListViewController.m in Sources */,
 				6BE2B1AF19A0F2F1000C0680 /* TRGridCell.m in Sources */,
 				6BE2B187199F725A000C0680 /* TRTwitterTimelineViewController.m in Sources */,
+				6B05358519A232D3007CA6D2 /* TRGridVerticalFlowLayout.m in Sources */,
 				6BE2B19619A0EB85000C0680 /* TRImage.m in Sources */,
 				6BE2B15E199F6D5C000C0680 /* main.m in Sources */,
 				6BE2B19319A0E0F2000C0680 /* TRTwitt.m in Sources */,
