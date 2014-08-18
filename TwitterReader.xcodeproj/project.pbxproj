@@ -19,6 +19,22 @@
 		6BE2B16D199F6D5C000C0680 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE2B155199F6D5C000C0680 /* UIKit.framework */; };
 		6BE2B175199F6D5C000C0680 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2B173199F6D5C000C0680 /* InfoPlist.strings */; };
 		6BE2B177199F6D5C000C0680 /* TwitterReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B176199F6D5C000C0680 /* TwitterReaderTests.m */; };
+		6BE2B183199F7107000C0680 /* TRTwitterTimelineViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B182199F7107000C0680 /* TRTwitterTimelineViewModel.m */; };
+		6BE2B187199F725A000C0680 /* TRTwitterTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B185199F725A000C0680 /* TRTwitterTimelineViewController.m */; };
+		6BE2B188199F725A000C0680 /* TRTwitterTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2B186199F725A000C0680 /* TRTwitterTimelineViewController.xib */; };
+		6BE2B18A199F7AFA000C0680 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE2B189199F7AFA000C0680 /* Accounts.framework */; };
+		6BE2B18C199F7B05000C0680 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE2B18B199F7B05000C0680 /* Social.framework */; };
+		6BE2B19019A0A2DC000C0680 /* TRWebClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B18F19A0A2DC000C0680 /* TRWebClient.m */; };
+		6BE2B19319A0E0F2000C0680 /* TRTwitt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B19219A0E0F2000C0680 /* TRTwitt.m */; };
+		6BE2B19619A0EB85000C0680 /* TRImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B19519A0EB85000C0680 /* TRImage.m */; };
+		6BE2B19C19A0F238000C0680 /* TRListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B19A19A0F238000C0680 /* TRListViewController.m */; };
+		6BE2B19D19A0F238000C0680 /* TRListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2B19B19A0F238000C0680 /* TRListViewController.xib */; };
+		6BE2B1A119A0F24B000C0680 /* TRGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B19F19A0F24B000C0680 /* TRGridViewController.m */; };
+		6BE2B1A219A0F24B000C0680 /* TRGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2B1A019A0F24B000C0680 /* TRGridViewController.xib */; };
+		6BE2B1AB19A0F2B0000C0680 /* TRListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B1A919A0F2B0000C0680 /* TRListCell.m */; };
+		6BE2B1AC19A0F2B0000C0680 /* TRListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2B1AA19A0F2B0000C0680 /* TRListCell.xib */; };
+		6BE2B1AF19A0F2F1000C0680 /* TRGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2B1AE19A0F2F1000C0680 /* TRGridCell.m */; };
+		6BE2B1B319A0F329000C0680 /* TRGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2B1B219A0F329000C0680 /* TRGridCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +64,32 @@
 		6BE2B172199F6D5C000C0680 /* TwitterReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TwitterReaderTests-Info.plist"; sourceTree = "<group>"; };
 		6BE2B174199F6D5C000C0680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6BE2B176199F6D5C000C0680 /* TwitterReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterReaderTests.m; sourceTree = "<group>"; };
+		6BE2B181199F7107000C0680 /* TRTwitterTimelineViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTwitterTimelineViewModel.h; sourceTree = "<group>"; };
+		6BE2B182199F7107000C0680 /* TRTwitterTimelineViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRTwitterTimelineViewModel.m; sourceTree = "<group>"; };
+		6BE2B184199F725A000C0680 /* TRTwitterTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTwitterTimelineViewController.h; sourceTree = "<group>"; };
+		6BE2B185199F725A000C0680 /* TRTwitterTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRTwitterTimelineViewController.m; sourceTree = "<group>"; };
+		6BE2B186199F725A000C0680 /* TRTwitterTimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TRTwitterTimelineViewController.xib; sourceTree = "<group>"; };
+		6BE2B189199F7AFA000C0680 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		6BE2B18B199F7B05000C0680 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		6BE2B18E19A0A2DC000C0680 /* TRWebClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRWebClient.h; sourceTree = "<group>"; };
+		6BE2B18F19A0A2DC000C0680 /* TRWebClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRWebClient.m; sourceTree = "<group>"; };
+		6BE2B19119A0E0F2000C0680 /* TRTwitt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTwitt.h; sourceTree = "<group>"; };
+		6BE2B19219A0E0F2000C0680 /* TRTwitt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRTwitt.m; sourceTree = "<group>"; };
+		6BE2B19419A0EB85000C0680 /* TRImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRImage.h; sourceTree = "<group>"; };
+		6BE2B19519A0EB85000C0680 /* TRImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRImage.m; sourceTree = "<group>"; };
+		6BE2B19819A0F017000C0680 /* TRTimelineRepresentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRTimelineRepresentation.h; sourceTree = "<group>"; };
+		6BE2B19919A0F238000C0680 /* TRListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRListViewController.h; sourceTree = "<group>"; };
+		6BE2B19A19A0F238000C0680 /* TRListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRListViewController.m; sourceTree = "<group>"; };
+		6BE2B19B19A0F238000C0680 /* TRListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TRListViewController.xib; sourceTree = "<group>"; };
+		6BE2B19E19A0F24B000C0680 /* TRGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRGridViewController.h; sourceTree = "<group>"; };
+		6BE2B19F19A0F24B000C0680 /* TRGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRGridViewController.m; sourceTree = "<group>"; };
+		6BE2B1A019A0F24B000C0680 /* TRGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TRGridViewController.xib; sourceTree = "<group>"; };
+		6BE2B1A819A0F2B0000C0680 /* TRListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRListCell.h; sourceTree = "<group>"; };
+		6BE2B1A919A0F2B0000C0680 /* TRListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRListCell.m; sourceTree = "<group>"; };
+		6BE2B1AA19A0F2B0000C0680 /* TRListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TRListCell.xib; sourceTree = "<group>"; };
+		6BE2B1AD19A0F2F1000C0680 /* TRGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRGridCell.h; sourceTree = "<group>"; };
+		6BE2B1AE19A0F2F1000C0680 /* TRGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRGridCell.m; sourceTree = "<group>"; };
+		6BE2B1B219A0F329000C0680 /* TRGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TRGridCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE2B18C199F7B05000C0680 /* Social.framework in Frameworks */,
+				6BE2B18A199F7AFA000C0680 /* Accounts.framework in Frameworks */,
 				6BE2B154199F6D5C000C0680 /* CoreGraphics.framework in Frameworks */,
 				6BE2B156199F6D5C000C0680 /* UIKit.framework in Frameworks */,
 				6BE2B152199F6D5C000C0680 /* Foundation.framework in Frameworks */,
@@ -96,6 +140,8 @@
 		6BE2B150199F6D5C000C0680 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6BE2B18B199F7B05000C0680 /* Social.framework */,
+				6BE2B189199F7AFA000C0680 /* Accounts.framework */,
 				6BE2B151199F6D5C000C0680 /* Foundation.framework */,
 				6BE2B153199F6D5C000C0680 /* CoreGraphics.framework */,
 				6BE2B155199F6D5C000C0680 /* UIKit.framework */,
@@ -107,6 +153,8 @@
 		6BE2B157199F6D5C000C0680 /* TwitterReader */ = {
 			isa = PBXGroup;
 			children = (
+				6BE2B18D19A0A290000C0680 /* Model */,
+				6BE2B180199F7084000C0680 /* TwitterTimelineController */,
 				6BE2B160199F6D5C000C0680 /* TRAppDelegate.h */,
 				6BE2B161199F6D5C000C0680 /* TRAppDelegate.m */,
 				6BE2B163199F6D5C000C0680 /* Images.xcassets */,
@@ -142,6 +190,52 @@
 				6BE2B173199F6D5C000C0680 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6BE2B180199F7084000C0680 /* TwitterTimelineController */ = {
+			isa = PBXGroup;
+			children = (
+				6BE2B19719A0EFA4000C0680 /* Representation */,
+				6BE2B181199F7107000C0680 /* TRTwitterTimelineViewModel.h */,
+				6BE2B182199F7107000C0680 /* TRTwitterTimelineViewModel.m */,
+				6BE2B184199F725A000C0680 /* TRTwitterTimelineViewController.h */,
+				6BE2B185199F725A000C0680 /* TRTwitterTimelineViewController.m */,
+				6BE2B186199F725A000C0680 /* TRTwitterTimelineViewController.xib */,
+			);
+			path = TwitterTimelineController;
+			sourceTree = "<group>";
+		};
+		6BE2B18D19A0A290000C0680 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BE2B18E19A0A2DC000C0680 /* TRWebClient.h */,
+				6BE2B18F19A0A2DC000C0680 /* TRWebClient.m */,
+				6BE2B19119A0E0F2000C0680 /* TRTwitt.h */,
+				6BE2B19219A0E0F2000C0680 /* TRTwitt.m */,
+				6BE2B19419A0EB85000C0680 /* TRImage.h */,
+				6BE2B19519A0EB85000C0680 /* TRImage.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6BE2B19719A0EFA4000C0680 /* Representation */ = {
+			isa = PBXGroup;
+			children = (
+				6BE2B19819A0F017000C0680 /* TRTimelineRepresentation.h */,
+				6BE2B19919A0F238000C0680 /* TRListViewController.h */,
+				6BE2B19A19A0F238000C0680 /* TRListViewController.m */,
+				6BE2B19B19A0F238000C0680 /* TRListViewController.xib */,
+				6BE2B1A819A0F2B0000C0680 /* TRListCell.h */,
+				6BE2B1A919A0F2B0000C0680 /* TRListCell.m */,
+				6BE2B1AA19A0F2B0000C0680 /* TRListCell.xib */,
+				6BE2B19E19A0F24B000C0680 /* TRGridViewController.h */,
+				6BE2B19F19A0F24B000C0680 /* TRGridViewController.m */,
+				6BE2B1A019A0F24B000C0680 /* TRGridViewController.xib */,
+				6BE2B1AD19A0F2F1000C0680 /* TRGridCell.h */,
+				6BE2B1AE19A0F2F1000C0680 /* TRGridCell.m */,
+				6BE2B1B219A0F329000C0680 /* TRGridCell.xib */,
+			);
+			path = Representation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +316,11 @@
 			files = (
 				6BE2B15C199F6D5C000C0680 /* InfoPlist.strings in Resources */,
 				6BE2B164199F6D5C000C0680 /* Images.xcassets in Resources */,
+				6BE2B19D19A0F238000C0680 /* TRListViewController.xib in Resources */,
+				6BE2B188199F725A000C0680 /* TRTwitterTimelineViewController.xib in Resources */,
+				6BE2B1B319A0F329000C0680 /* TRGridCell.xib in Resources */,
+				6BE2B1A219A0F24B000C0680 /* TRGridViewController.xib in Resources */,
+				6BE2B1AC19A0F2B0000C0680 /* TRListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,8 +339,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE2B19019A0A2DC000C0680 /* TRWebClient.m in Sources */,
+				6BE2B1AB19A0F2B0000C0680 /* TRListCell.m in Sources */,
 				6BE2B162199F6D5C000C0680 /* TRAppDelegate.m in Sources */,
+				6BE2B19C19A0F238000C0680 /* TRListViewController.m in Sources */,
+				6BE2B1AF19A0F2F1000C0680 /* TRGridCell.m in Sources */,
+				6BE2B187199F725A000C0680 /* TRTwitterTimelineViewController.m in Sources */,
+				6BE2B19619A0EB85000C0680 /* TRImage.m in Sources */,
 				6BE2B15E199F6D5C000C0680 /* main.m in Sources */,
+				6BE2B19319A0E0F2000C0680 /* TRTwitt.m in Sources */,
+				6BE2B183199F7107000C0680 /* TRTwitterTimelineViewModel.m in Sources */,
+				6BE2B1A119A0F24B000C0680 /* TRGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +469,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwitterReader/TwitterReader-Prefix.pch";
 				INFOPLIST_FILE = "TwitterReader/TwitterReader-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -374,6 +483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TwitterReader/TwitterReader-Prefix.pch";
 				INFOPLIST_FILE = "TwitterReader/TwitterReader-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
