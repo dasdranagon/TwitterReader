@@ -142,7 +142,7 @@ NSString * const kWebClientSelectUserNorification = @"kWebClientSelectUserNorifi
                                             }
                                             else {
                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                    [strongSelf showAlert:[error localizedDescription]];
+                                                    [strongSelf showAlert:@"Access denied"];
                                                 });
                                             }
                                         }];
