@@ -84,7 +84,7 @@ NSString * const kWebClientSelectUserNorification = @"kWebClientSelectUserNorifi
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [strongSelf showAlert:[NSString stringWithFormat:@"The response status code is %d", urlResponse.statusCode]];
+                    [strongSelf showAlert:[NSString stringWithFormat:@"The response status code is %ld", (long)urlResponse.statusCode]];
                 });
             }
         }
